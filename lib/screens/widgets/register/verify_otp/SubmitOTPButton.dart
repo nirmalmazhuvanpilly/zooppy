@@ -14,7 +14,7 @@ class SubmitOTPButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           primary: Colors.red,
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
           textStyle: TextStyle(color: Colors.white),
         ),
         child: Text(

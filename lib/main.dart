@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
-
-import 'package:zooppy/screens/homepage/Homescreen.dart';
-import 'package:zooppy/screens/login/Login.dart';
+import 'package:zooppy/screens/main_screens/CheckAuth.dart';
 
 Future main() async {
   await DotEnv.load(fileName: ".env");
@@ -34,45 +30,5 @@ class MyApp extends StatelessWidget {
       // home: CheckAuth(),
       home: CheckAuth(),
     );
-  }
-}
-
-class CheckAuth extends StatefulWidget {
-  @override
-  _CheckAuthState createState() => _CheckAuthState();
-}
-
-class _CheckAuthState extends State<CheckAuth> {
-  bool isAuth = false;
-  @override
-  void initState() {
-    _checkIfLoggedIn();
-    super.initState();
-  }
-
-  // Function for checking LoggedIn or Not
-  void _checkIfLoggedIn() async {
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-
-    // store sharedpreferences value from 'access_token' key to variable token
-    var token = localStorage.getString('access_token');
-
-    // If token has value from shared preferences set isAuth to True
-    if (token != null) {
-      setState(() {
-        isAuth = true;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget child;
-    if (isAuth) {
-      child = HomeScreen();
-    } else {
-      child = Login();
-    }
-    return child;
   }
 }

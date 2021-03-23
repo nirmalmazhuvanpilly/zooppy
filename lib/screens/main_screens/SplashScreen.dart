@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'homepage/Homescreen.dart';
+import 'package:zooppy/screens/main_screens/Homescreen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

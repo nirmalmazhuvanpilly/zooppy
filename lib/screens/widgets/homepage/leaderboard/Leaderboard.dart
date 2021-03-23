@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zooppy/models/TopWinnersModel.dart';
 import 'package:zooppy/services/HomeAPI.dart';
-import 'package:zooppy/screens/homepage/leaderboard/LeaderboardStackBanner.dart';
-import 'package:zooppy/screens/homepage/leaderboard/StackContainers.dart';
+import 'package:zooppy/screens/widgets/homepage/leaderboard/LeaderboardStackBanner.dart';
+import 'package:zooppy/screens/widgets/homepage/leaderboard/StackContainers.dart';
 
 class Leaderboard extends StatefulWidget {
   @override

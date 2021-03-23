@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zooppy/services/Auth.dart';
-import 'package:zooppy/screens/common_widgets/ZooppyLogo.dart';
-import 'package:zooppy/screens/register/reset_password/ResetPassword.dart';
-import 'package:zooppy/screens/register/send_otp/AlreadyLoginButton.dart';
-import 'package:zooppy/screens/register/verify_otp/EnterOTPTextField.dart';
-import 'package:zooppy/screens/register/verify_otp/ResendOTPButton.dart';
-import 'package:zooppy/screens/register/verify_otp/SubmitOTPButton.dart';
 
-class ResetPasswordOTP extends StatelessWidget {
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:zooppy/services/Auth.dart';
+
+import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
+import 'package:zooppy/screens/widgets/register/verify_otp/EnterOTPTextField.dart';
+import 'package:zooppy/screens/widgets/register/verify_otp/ResendOTPButton.dart';
+import 'package:zooppy/screens/widgets/register/verify_otp/SubmitOTPButton.dart';
+import 'package:zooppy/screens/main_screens/CreatePassword.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/AlreadyLoginButton.dart';
+
+class VerifyOTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,11 +25,6 @@ class ResetPasswordOTP extends StatelessWidget {
             BlendMode.dstATop,
           ),
           fit: BoxFit.cover,
-
-          //From Network
-          // image: NetworkImage("https://floridapolitics.com/wp-content/uploads/2016/01/film-production.jpg"),
-
-          //From Assets
           image: AssetImage('assets/bg.png'),
         ),
       ),
@@ -37,28 +35,29 @@ class ResetPasswordOTP extends StatelessWidget {
           backgroundColor: Colors.redAccent,
           elevation: 20,
           title: Text(
-            "Reset Password",
+            "Register",
             style: TextStyle(
                 // fontSize: 25,
                 ),
           ),
         ),
-        body: ResetPasswordOTPFields(),
+        body: VerifyOTPFields(),
       ),
     );
   }
 }
 
-class ResetPasswordOTPFields extends StatefulWidget {
+class VerifyOTPFields extends StatefulWidget {
   @override
-  _ResetPasswordOTPFieldsState createState() => _ResetPasswordOTPFieldsState();
+  _VerifyOTPFieldsState createState() => _VerifyOTPFieldsState();
 }
 
-class _ResetPasswordOTPFieldsState extends State<ResetPasswordOTPFields> {
-  var _resetOtpController = TextEditingController();
-  var _resetOtp;
+class _VerifyOTPFieldsState extends State<VerifyOTPFields> {
+  var _otpController = TextEditingController();
 
-  // Function to return Snack Bar
+  var _otp;
+
+  //Function to return Snack Bar
   _showMsg(msg) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -78,15 +77,15 @@ class _ResetPasswordOTPFieldsState extends State<ResetPasswordOTPFields> {
             ZooppyLogo(),
             SizedBox(height: 50),
             EnterOTPTextField(
-              otpController: _resetOtpController,
+              otpController: _otpController,
             ),
             SizedBox(height: 20),
             SubmitOTPButton(
-              otpController: _resetOtpController,
-              submitOTP: _resetSubmitOTP,
+              otpController: _otpController,
+              submitOTP: _submitOTP,
             ),
             SizedBox(height: 1),
-            ResendOTPButton(resendOTP: _resetResendOTP),
+            ResendOTPButton(resendOTP: _resendOTP),
             AlreadyLoginButton(),
           ],
         ),
@@ -94,14 +93,13 @@ class _ResetPasswordOTPFieldsState extends State<ResetPasswordOTPFields> {
     );
   }
 
-  void _resetSubmitOTP() async {
-    //Store _resetOtpController value to resetOtp variable
-    _resetOtp = _resetOtpController.text;
-    // print(_resetOtp);
+  void _submitOTP() async {
+    //Store _otpController value to otp variable
+    _otp = _otpController.text;
+    // print(_otp);
 
-    if (_resetOtp.toString().isEmpty) {
-      _resetOtp = "0";
-      // print(_resetOtp);
+    if (_otp.isEmpty) {
+      _otp = "0";
     }
 
     //Fetching Mobile Number from Shared Preferences
@@ -111,17 +109,17 @@ class _ResetPasswordOTPFieldsState extends State<ResetPasswordOTPFields> {
 
     //Call submitOtpRequest() function from AuthAPI Class
     var verifyOtpApi =
-        await AuthAPI().submitOtpRequest(mobilenumbertoken, _resetOtp);
+        await AuthAPI().submitOtpRequest(mobilenumbertoken, _otp);
 
-    //If Request successfull
+    //If Request successful
     if (verifyOtpApi['success']) {
-      //Saving _otp value from otp controller to the key 'otp' in the shared preferences
-      localStorage.setString('otp', _resetOtp);
+      //Saving _otp value from _otpController to the key 'otp' in the shared preferences
+      localStorage.setString('otp', _otp);
 
       // Navigate to CreatePassword
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => ResetPassword(),
+          builder: (BuildContext context) => CreatePassword(),
         ),
       );
     } else {
@@ -129,16 +127,15 @@ class _ResetPasswordOTPFieldsState extends State<ResetPasswordOTPFields> {
     }
   }
 
-  void _resetResendOTP() async {
+  void _resendOTP() async {
     //Fetching Mobile Number from Shared Preferences
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var mobilenumbertoken = localStorage.getString('mobile_number');
     // print(mobilenumbertoken);
 
     //Call resendOtpRequest() function from AuthAPI Class
-    var resendOtpApi = await AuthAPI().resetResendOtpRequest(mobilenumbertoken);
+    var resendOtpApi = await AuthAPI().resendOtpRequest(mobilenumbertoken);
 
-    //If Request successfull
     if (resendOtpApi['success']) {
       _showMsg(resendOtpApi['message']);
     }

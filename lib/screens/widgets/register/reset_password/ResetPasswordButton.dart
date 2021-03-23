@@ -11,7 +11,7 @@ class ResetPasswordButton extends StatelessWidget {
       width: 150,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),

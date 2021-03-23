@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zooppy/services/Auth.dart';
 
-import 'package:zooppy/screens/common_widgets/ZooppyLogo.dart';
-import 'package:zooppy/screens/register/reset_password_verify_otp/ResetPasswordOTP.dart';
-import 'package:zooppy/screens/register/send_otp/AlreadyLoginButton.dart';
-import 'package:zooppy/screens/register/send_otp/OTPMobileTextField.dart';
-import 'package:zooppy/screens/register/send_otp/SendOTPButton.dart';
+import 'package:zooppy/screens/main_screens/VerifyOTP.dart';
+import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/OTPMobileTextField.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/SendOTPButton.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/AlreadyLoginButton.dart';
 
-class ResetSendOTP extends StatelessWidget {
+class SendOTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,31 +33,31 @@ class ResetSendOTP extends StatelessWidget {
           backgroundColor: Colors.redAccent,
           elevation: 20,
           title: Text(
-            "Reset Password",
+            "Register",
             style: TextStyle(
                 // fontSize: 25,
                 ),
           ),
         ),
-        body: ResetSendOTPFields(),
+        body: SendOTPFields(),
       ),
     );
   }
 }
 
-class ResetSendOTPFields extends StatefulWidget {
+class SendOTPFields extends StatefulWidget {
   @override
-  _ResetSendOTPFieldsState createState() => _ResetSendOTPFieldsState();
+  _SendOTPFieldsState createState() => _SendOTPFieldsState();
 }
 
-class _ResetSendOTPFieldsState extends State<ResetSendOTPFields> {
+class _SendOTPFieldsState extends State<SendOTPFields> {
   var _mobileNumber;
-  var _resetMobileController = TextEditingController();
-  bool _resetSendOTPIsDisabled;
+  var _mobileController = TextEditingController();
+  bool _sendOTPIsDisabled;
 
   @override
   void initState() {
-    _resetSendOTPIsDisabled = true;
+    _sendOTPIsDisabled = true;
     super.initState();
   }
 
@@ -68,12 +70,12 @@ class _ResetSendOTPFieldsState extends State<ResetSendOTPFields> {
     );
   }
 
-  void _resetMobileNumberChanges(String value) {
+  void _mobileNumberChanges(String value) {
     setState(() {
       if (value.length < 10) {
-        _resetSendOTPIsDisabled = true;
+        _sendOTPIsDisabled = true;
       } else {
-        _resetSendOTPIsDisabled = false;
+        _sendOTPIsDisabled = false;
       }
     });
     // print(value);
@@ -91,13 +93,13 @@ class _ResetSendOTPFieldsState extends State<ResetSendOTPFields> {
             ZooppyLogo(),
             SizedBox(height: 50),
             OTPMobileTextField(
-              mobileNumberChanges: _resetMobileNumberChanges,
-              mobileNumberController: _resetMobileController,
+              mobileNumberController: _mobileController,
+              mobileNumberChanges: _mobileNumberChanges,
             ),
             SizedBox(height: 20),
             SendOTPButton(
-              sendOTP: resetSendOTP,
-              sendOTPIsDisabled: _resetSendOTPIsDisabled,
+              sendOTPIsDisabled: _sendOTPIsDisabled,
+              sendOTP: _sendOTP,
             ),
             SizedBox(height: 20),
             AlreadyLoginButton(),
@@ -107,13 +109,14 @@ class _ResetSendOTPFieldsState extends State<ResetSendOTPFields> {
     );
   }
 
-  void resetSendOTP() async {
-    _mobileNumber = _resetMobileController.text;
+  void _sendOTP() async {
+    //Store _mobileController value to phonenumber variable
+    _mobileNumber = _mobileController.text;
     // print(_mobileNumber);
 
-    var type = "/reset_password";
+    var type = "/register";
+    //Call sendOtpRequest() function from AuthAPI Class
 
-    //Call resetSendOtpRequest() function from AuthAPI Class
     var sendOtpApi = await AuthAPI().sendOtpRequest(_mobileNumber, type);
 
     //If request successfull
@@ -123,18 +126,16 @@ class _ResetSendOTPFieldsState extends State<ResetSendOTPFields> {
       //Saving 'mobile_number' in the shared preferences
       localStorage.setString('mobile_number', _mobileNumber);
 
-      // // ignore: unused_local_variable
       // // Checking mobile_number stored in Shared Preferences
       // var mobilenumbertoken = localStorage.getString('mobile_number');
       // print(mobilenumbertoken);
 
-      // Navigate to RegisterOTP
+      // Navigate to VerifyOTP
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => ResetPasswordOTP(),
+          builder: (BuildContext context) => VerifyOTP(),
         ),
       );
-      // print("OTP Sent");
     } else {
       _showMsg(sendOtpApi['message']);
     }

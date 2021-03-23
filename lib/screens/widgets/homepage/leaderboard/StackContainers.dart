@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zooppy/screens/homepage/leaderboard/LeaderboardStack.dart';
+import 'package:zooppy/screens/widgets/homepage/leaderboard/LeaderboardStack.dart';
 
 class StackContainers extends StatelessWidget {
   final String srank;

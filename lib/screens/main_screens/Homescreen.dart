@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zooppy/screens/addcash.dart';
 import 'package:zooppy/screens/coupons.dart';
 import 'package:zooppy/screens/fanbase.dart';
-import './HomeScreenFields.dart';
+import '../widgets/homepage/HomeScreenFields.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

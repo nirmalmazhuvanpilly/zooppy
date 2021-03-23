@@ -5,14 +5,14 @@ import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zooppy/services/Auth.dart';
 
-import 'package:zooppy/screens/common_widgets/ZooppyLogo.dart';
-import 'package:zooppy/screens/homepage/Homescreen.dart';
-import 'package:zooppy/screens/register/create_password/ClickHere.dart';
-import 'package:zooppy/screens/register/create_password/PasswordTextField.dart';
-import 'package:zooppy/screens/register/create_password/RefCodeTextField.dart';
-import 'package:zooppy/screens/register/create_password/RegisterButton.dart';
-import 'package:zooppy/screens/register/create_password/TnC.dart';
-import 'package:zooppy/screens/register/send_otp/AlreadyLoginButton.dart';
+import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
+import 'package:zooppy/screens/main_screens/Homescreen.dart';
+import 'package:zooppy/screens/widgets/register/create_password/ClickHere.dart';
+import 'package:zooppy/screens/widgets/register/create_password/PasswordTextField.dart';
+import 'package:zooppy/screens/widgets/register/create_password/RefCodeTextField.dart';
+import 'package:zooppy/screens/widgets/register/create_password/RegisterButton.dart';
+import 'package:zooppy/screens/widgets/register/create_password/TnC.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/AlreadyLoginButton.dart';
 
 class CreatePassword extends StatelessWidget {
   @override

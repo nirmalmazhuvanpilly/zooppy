@@ -5,13 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:zooppy/services/Auth.dart';
 
-import 'package:zooppy/screens/homepage/Homescreen.dart';
-import 'package:zooppy/screens/login/LoginButton.dart';
-import 'package:zooppy/screens/login/LoginPasswordTextField.dart';
-import 'package:zooppy/screens/login/LoginMobileTextField.dart';
-import 'package:zooppy/screens/login/ForgotPasswordButton.dart';
-import 'package:zooppy/screens/common_widgets/ZooppyLogo.dart';
-import 'package:zooppy/screens/login/SignUpButton.dart';
+import 'package:zooppy/screens/main_screens/Homescreen.dart';
+import 'package:zooppy/screens/widgets/login/LoginButton.dart';
+import 'package:zooppy/screens/widgets/login/LoginPasswordTextField.dart';
+import 'package:zooppy/screens/widgets/login/LoginMobileTextField.dart';
+import 'package:zooppy/screens/widgets/login/ForgotPasswordButton.dart';
+import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
+import 'package:zooppy/screens/widgets/login/SignUpButton.dart';
 
 class Login extends StatelessWidget {
   @override

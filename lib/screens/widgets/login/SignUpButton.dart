@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zooppy/screens/register/send_otp/SendOTP.dart';
+import 'package:zooppy/screens/main_screens/SendOTP.dart';
 
 class SignUpButton extends StatelessWidget {
   @override
