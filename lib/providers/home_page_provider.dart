@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zooppy/models/home_page_model.dart';
@@ -18,6 +17,7 @@ class HomePageProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  //fetching HomePageData
   Future<void> fetchHomeData() async {
     homePageModel = await _homeAPI.homeDetailsRequest();
     await newUserValidation();
