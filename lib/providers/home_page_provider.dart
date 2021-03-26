@@ -22,6 +22,7 @@ class HomePageProvider with ChangeNotifier {
   Future<void> fetchHomeData() async {
     homePageModel = await _homeAPI.homeDetailsRequest();
     await newUserValidation();
+    await fetchTopWinners();
   }
   //////////////////////////////////////////////////////////////////////////////
 
@@ -51,6 +52,26 @@ class HomePageProvider with ChangeNotifier {
 
   Future<void> fetchTopWinners() async {
     topWinnersModel = await _homeAPI.topWinnersRequest();
+  }
+  //////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
+  bool thisWeek = true;
+  bool allTime = false;
+  thisWeekClicked() {
+    thisWeek = true;
+    allTime = false;
+    print("This Week $thisWeek");
+    print("All Time $allTime");
+    notifyListeners();
+  }
+
+  allTimeClicked() {
+    allTime = true;
+    thisWeek = false;
+    print("This Week $thisWeek");
+    print("All Time $allTime");
+    notifyListeners();
   }
   //////////////////////////////////////////////////////////////////////////////
 
