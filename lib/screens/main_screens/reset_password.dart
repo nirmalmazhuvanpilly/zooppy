@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zooppy/services/auth.dart';
-import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
-import 'package:zooppy/screens/main_screens/Homescreen.dart';
-import 'package:zooppy/screens/widgets/register/reset_password/ResetPasswordButton.dart';
-import 'package:zooppy/screens/widgets/register/reset_password/ResetPasswordTextField.dart';
-import 'package:zooppy/screens/widgets/register/send_otp/AlreadyLoginButton.dart';
+import 'package:zooppy/screens/widgets/common_widgets/zooppy_logo.dart';
+import 'package:zooppy/screens/main_screens/homescreen.dart';
+import 'package:zooppy/screens/widgets/register/reset_password/reset_password_button.dart';
+import 'package:zooppy/screens/widgets/register/reset_password/reset_password_text_field.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/already_login_button.dart';
 
 class ResetPassword extends StatelessWidget {
   @override

@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:zooppy/models/HomePageModel.dart';
-import 'package:zooppy/models/TopWinnersModel.dart';
+import 'package:zooppy/models/home_page_model.dart';
+import 'package:zooppy/models/top_winners_model.dart';
 import 'package:zooppy/services/api.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 

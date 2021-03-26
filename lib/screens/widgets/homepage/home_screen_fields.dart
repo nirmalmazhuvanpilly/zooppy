@@ -1,17 +1,17 @@
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zooppy/models/HomePageModel.dart';
+import 'package:zooppy/models/home_page_model.dart';
 import 'package:zooppy/services/home_api.dart';
-import 'package:zooppy/screens/widgets/homepage/EditStatePopUp.dart';
-import 'package:zooppy/screens/widgets/homepage/HoorayPopUp.dart';
-import 'package:zooppy/screens/main_screens/Login.dart';
-import './MyDreamPrice.dart';
-import './CarouselImage.dart';
-import './CarouselImageSlider.dart';
-import './CardImage.dart';
-import './Blog.dart';
-import 'leaderboard/Leaderboard.dart';
+import 'package:zooppy/screens/widgets/homepage/edit_state_pop_up.dart';
+import 'package:zooppy/screens/widgets/homepage/hooray_pop_up.dart';
+import 'package:zooppy/screens/main_screens/login.dart';
+import 'my_dream_price.dart';
+import 'carousel_image.dart';
+import 'carousel_image_slider.dart';
+import 'card_image.dart';
+import 'blog.dart';
+import 'leaderboard/leaderboard.dart';
 
 // ignore: must_be_immutable
 class HomeScreenFields extends StatelessWidget {

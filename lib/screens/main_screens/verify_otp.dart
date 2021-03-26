@@ -5,12 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:zooppy/services/auth.dart';
 
-import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
-import 'package:zooppy/screens/widgets/register/verify_otp/EnterOTPTextField.dart';
-import 'package:zooppy/screens/widgets/register/verify_otp/ResendOTPButton.dart';
-import 'package:zooppy/screens/widgets/register/verify_otp/SubmitOTPButton.dart';
-import 'package:zooppy/screens/main_screens/CreatePassword.dart';
-import 'package:zooppy/screens/widgets/register/send_otp/AlreadyLoginButton.dart';
+import 'package:zooppy/screens/widgets/common_widgets/zooppy_logo.dart';
+import 'package:zooppy/screens/widgets/register/verify_otp/enter_otp_text_field.dart';
+import 'package:zooppy/screens/widgets/register/verify_otp/resend_otp_button.dart';
+import 'package:zooppy/screens/widgets/register/verify_otp/submit_otp_button.dart';
+import 'package:zooppy/screens/main_screens/create_password.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/already_login_button.dart';
 
 class VerifyOTP extends StatelessWidget {
   @override

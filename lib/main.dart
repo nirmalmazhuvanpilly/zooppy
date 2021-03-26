@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
-import 'package:zooppy/screens/main_screens/CheckAuth.dart';
+import 'package:zooppy/screens/main_screens/check_auth.dart';
 
 Future main() async {
   await DotEnv.load(fileName: ".env");

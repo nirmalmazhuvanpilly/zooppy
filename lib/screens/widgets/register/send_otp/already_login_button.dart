@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:zooppy/screens/main_screens/SendOTP.dart';
+import 'package:zooppy/screens/main_screens/login.dart';
 
-class SignUpButton extends StatelessWidget {
+class AlreadyLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "No account yet ?",
+          "Already having account ?",
           style: TextStyle(
             color: Colors.white,
+            // fontSize: 20,
           ),
         ),
         TextButton(
-          child: Text(
-            'Sign Up',
-          ),
           style: TextButton.styleFrom(primary: Colors.redAccent),
+          child: Text(
+            'LogIn',
+            style: TextStyle(
+                // fontSize: 20.0,
+                ),
+          ),
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (BuildContext context) => SendOTP(),
+                builder: (BuildContext context) => Login(),
               ),
             );
           },

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zooppy/services/auth.dart';
 
-import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
-import 'package:zooppy/screens/main_screens/ResetPasswordOTP.dart';
-import 'package:zooppy/screens/widgets/register/send_otp/AlreadyLoginButton.dart';
-import 'package:zooppy/screens/widgets/register/send_otp/OTPMobileTextField.dart';
-import 'package:zooppy/screens/widgets/register/send_otp/SendOTPButton.dart';
+import 'package:zooppy/screens/widgets/common_widgets/zooppy_logo.dart';
+import 'package:zooppy/screens/main_screens/reset_password_otp.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/already_login_button.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/otp_mobile_text_field.dart';
+import 'package:zooppy/screens/widgets/register/send_otp/send_otp_button.dart';
 
 class ResetSendOTP extends StatelessWidget {
   @override

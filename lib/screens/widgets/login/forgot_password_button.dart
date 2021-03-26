@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zooppy/screens/main_screens/ResetSendOTP.dart';
+import 'package:zooppy/screens/main_screens/reset_send_otp.dart';
 
 class ForgotPasswordButton extends StatelessWidget {
   @override

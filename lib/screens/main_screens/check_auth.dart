@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zooppy/screens/main_screens/Homescreen.dart';
-import 'package:zooppy/screens/main_screens/Login.dart';
+import 'package:zooppy/screens/main_screens/homescreen.dart';
+import 'package:zooppy/screens/main_screens/login.dart';
 
 class CheckAuth extends StatefulWidget {
   @override
