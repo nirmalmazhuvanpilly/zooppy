@@ -25,7 +25,7 @@ class VerifyOTP extends StatelessWidget {
             BlendMode.dstATop,
           ),
           fit: BoxFit.cover,
-          image: AssetImage('assets/bg.png'),
+          image: AssetImage('assets/bg.jpg'),
         ),
       ),
       child: Scaffold(

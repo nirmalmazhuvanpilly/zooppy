@@ -19,12 +19,12 @@ class ResetPassword extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           //Used to Blend Image With Opacity
-          colorFilter: new ColorFilter.mode(
-            Colors.black.withOpacity(0.2),
-            BlendMode.dstATop,
-          ),
+          // colorFilter: new ColorFilter.mode(
+          //   Colors.black.withOpacity(0.2),
+          //   BlendMode.dstATop,
+          // ),
           fit: BoxFit.cover,
-          image: AssetImage('assets/bg.png'),
+          image: AssetImage('assets/bg.jpg'),
         ),
       ),
       child: Scaffold(

@@ -21,12 +21,12 @@ class Login extends StatelessWidget {
       height: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          colorFilter: new ColorFilter.mode(
-            Colors.black.withOpacity(0.2),
-            BlendMode.dstATop,
-          ),
+          // colorFilter: new ColorFilter.mode(
+          //   Colors.black.withOpacity(0.2),
+          //   BlendMode.dstATop,
+          // ),
           fit: BoxFit.cover,
-          image: AssetImage('assets/bg.png'),
+          image: AssetImage('assets/bg.jpg'),
         ),
       ),
       child: Scaffold(
