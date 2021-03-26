@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'package:zooppy/services/Auth.dart';
+import 'package:zooppy/services/auth.dart';
 
 import 'package:zooppy/screens/main_screens/Homescreen.dart';
 import 'package:zooppy/screens/widgets/login/LoginButton.dart';

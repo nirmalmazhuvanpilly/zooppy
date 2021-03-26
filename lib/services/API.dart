@@ -10,8 +10,7 @@ class Network {
   /*
   This function checks for token stored in the user device
   and assigns it to the initially defined String accesstoken;
-  */
-  /*
+  
   Using Shared Preferences to store data
   */
   _getToken() async {

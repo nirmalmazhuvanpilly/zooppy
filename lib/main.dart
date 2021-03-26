@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       // debugShowCheckedModeBanner to false to disable Debug Banner
       debugShowCheckedModeBanner: false,
 
-      // main.dart will execute first... The Class given in home "" will execute
+      // main.dart will execute first... The Class given in home: will execute
       // home: CheckAuth(),
       home: CheckAuth(),
     );

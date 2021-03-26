@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:zooppy/services/API.dart';
+import 'package:zooppy/services/api.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 //Class that manages all Authorization API requests

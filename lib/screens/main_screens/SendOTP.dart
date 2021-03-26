@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zooppy/services/Auth.dart';
+import 'package:zooppy/services/auth.dart';
 
 import 'package:zooppy/screens/main_screens/VerifyOTP.dart';
 import 'package:zooppy/screens/widgets/common_widgets/ZooppyLogo.dart';
