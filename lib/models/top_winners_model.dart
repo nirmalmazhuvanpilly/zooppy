@@ -13,33 +13,31 @@ String topWinnersModelToJson(TopWinnersModel data) =>
 class TopWinnersModel {
   TopWinnersModel({
     this.success,
+    this.userWinnings,
     this.topWinners,
-    this.weeklyWinners,
   });
 
   bool success;
-  List<Winner> topWinners;
-  List<Winner> weeklyWinners;
+  dynamic userWinnings;
+  List<TopWinner> topWinners;
 
   factory TopWinnersModel.fromJson(Map<String, dynamic> json) =>
       TopWinnersModel(
         success: json["success"],
-        topWinners: List<Winner>.from(
-            json["top_winners"].map((x) => Winner.fromJson(x))),
-        weeklyWinners: List<Winner>.from(
-            json["weekly_winners"].map((x) => Winner.fromJson(x))),
+        userWinnings: json["user_winnings"],
+        topWinners: List<TopWinner>.from(
+            json["top_winners"].map((x) => TopWinner.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
+        "user_winnings": userWinnings,
         "top_winners": List<dynamic>.from(topWinners.map((x) => x.toJson())),
-        "weekly_winners":
-            List<dynamic>.from(weeklyWinners.map((x) => x.toJson())),
       };
 }
 
-class Winner {
-  Winner({
+class TopWinner {
+  TopWinner({
     this.id,
     this.userId,
     this.type,
@@ -59,7 +57,7 @@ class Winner {
   DateTime updatedAt;
   User user;
 
-  factory Winner.fromJson(Map<String, dynamic> json) => Winner(
+  factory TopWinner.fromJson(Map<String, dynamic> json) => TopWinner(
         id: json["id"],
         userId: json["user_id"],
         type: topWinnerTypeValues.map[json["type"]],
@@ -125,10 +123,10 @@ class User {
   dynamic username;
   Gender gender;
   DateTime dateOfBirth;
-  dynamic pan;
+  String pan;
   dynamic city;
   String state;
-  dynamic panVerifiedAt;
+  DateTime panVerifiedAt;
   int referredBy;
   int avatarId;
   int languageId;
@@ -140,7 +138,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         name: json["name"],
-        email: json["email"],
+        email: json["email"] == null ? null : json["email"],
         type: userTypeValues.map[json["type"]],
         emailVerifiedAt: json["email_verified_at"] == null
             ? null
@@ -155,10 +153,12 @@ class User {
         dateOfBirth: json["date_of_birth"] == null
             ? null
             : DateTime.parse(json["date_of_birth"]),
-        pan: json["pan"],
+        pan: json["pan"] == null ? null : json["pan"],
         city: json["city"],
         state: json["state"] == null ? null : json["state"],
-        panVerifiedAt: json["pan_verified_at"],
+        panVerifiedAt: json["pan_verified_at"] == null
+            ? null
+            : DateTime.parse(json["pan_verified_at"]),
         referredBy: json["referred_by"] == null ? null : json["referred_by"],
         avatarId: json["avatar_id"],
         languageId: json["language_id"],
@@ -171,7 +171,7 @@ class User {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "email": email,
+        "email": email == null ? null : email,
         "type": userTypeValues.reverse[type],
         "email_verified_at":
             emailVerifiedAt == null ? null : emailVerifiedAt.toIso8601String(),
@@ -184,10 +184,11 @@ class User {
         "date_of_birth": dateOfBirth == null
             ? null
             : "${dateOfBirth.year.toString().padLeft(4, '0')}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}",
-        "pan": pan,
+        "pan": pan == null ? null : pan,
         "city": city,
         "state": state == null ? null : state,
-        "pan_verified_at": panVerifiedAt,
+        "pan_verified_at":
+            panVerifiedAt == null ? null : panVerifiedAt.toIso8601String(),
         "referred_by": referredBy == null ? null : referredBy,
         "avatar_id": avatarId,
         "language_id": languageId,

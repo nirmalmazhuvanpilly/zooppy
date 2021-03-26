@@ -4,12 +4,9 @@ class LeaderboardStackBanner extends StatelessWidget {
   final String rank;
   final String user;
   final String userAmount;
+  final String avatar;
 
-  LeaderboardStackBanner({
-    this.rank,
-    this.user,
-    this.userAmount,
-  });
+  LeaderboardStackBanner({this.rank, this.user, this.userAmount, this.avatar});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,9 +33,15 @@ class LeaderboardStackBanner extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 10),
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 24,
+              SizedBox(
+                height: 50,
+                width: 50,
+                child: ClipOval(
+                  child: Image.network(
+                    avatar,
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ),
               SizedBox(width: 10),
             ],
