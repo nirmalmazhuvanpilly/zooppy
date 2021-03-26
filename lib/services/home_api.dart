@@ -39,7 +39,6 @@ class HomeAPI {
     var data = {'value': stateValue};
     var res = await Network().postData(data, updateStateUrl);
     var body = json.decode(res.body);
-    print(body);
     return body;
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:provider/provider.dart';
+import 'package:zooppy/providers/home_page_provider.dart';
 import 'package:zooppy/screens/main_screens/check_auth.dart';
 
 Future main() async {
@@ -22,13 +24,21 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.red[700]));
 
-    return MaterialApp(
-      // debugShowCheckedModeBanner to false to disable Debug Banner
-      debugShowCheckedModeBanner: false,
+    //Using Multiproviders
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => HomePageProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        // debugShowCheckedModeBanner to false to disable Debug Banner
+        debugShowCheckedModeBanner: false,
 
-      // main.dart will execute first... The Class given in home: will execute
-      // home: CheckAuth(),
-      home: CheckAuth(),
+        // main.dart will execute first... The Class given in home: will execute
+        // home: CheckAuth(),
+        home: CheckAuth(),
+      ),
     );
   }
 }

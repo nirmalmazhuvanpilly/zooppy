@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zooppy/models/home_page_model.dart';
-import 'package:zooppy/services/home_api.dart';
+import 'package:zooppy/providers/home_page_provider.dart';
 import 'package:zooppy/screens/widgets/homepage/edit_state_pop_up.dart';
 import 'package:zooppy/screens/widgets/homepage/hooray_pop_up.dart';
 import 'package:zooppy/screens/main_screens/login.dart';
@@ -41,10 +41,6 @@ class HomeScreenFields extends StatelessWidget {
                     await SharedPreferences.getInstance();
 
                 await localStorage.clear();
-                // var userId = localStorage.getString('user_id');
-                // print("userid : $userId");
-                // var accessToken = localStorage.getString('access_token');
-                // print("access : $accessToken");
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (BuildContext context) => Login(),
@@ -59,83 +55,79 @@ class HomeScreenFields extends StatelessWidget {
   }
 }
 
-class HomeScreenFieldsContainer extends StatefulWidget {
-  @override
-  _HomeScreenFieldsContainerState createState() =>
-      _HomeScreenFieldsContainerState();
-}
-
-class _HomeScreenFieldsContainerState extends State<HomeScreenFieldsContainer> {
-  bool newUser;
-  bool editState;
-
-  @override
-  void initState() {
-    newUser = true;
-    editState = true;
-    _fetchHomeData();
-    super.initState();
-  }
-
-  //Created Future Model Class Object
-  Future<HomePageModel> _homePageModel;
-
-  void _fetchHomeData() {
-    //Calling homeDetailsRequest and assigned to _homePageModel
-    _homePageModel = HomeAPI().homeDetailsRequest();
-  }
-
+class HomeScreenFieldsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //Create Provider object
+    final homePageProviderValue =
+        Provider.of<HomePageProvider>(context, listen: false);
+
     return Container(
       margin: EdgeInsets.only(left: 10, right: 10, top: 10),
       width: double.infinity,
       height: double.infinity,
       // color: Colors.white,
-      child: FutureBuilder<HomePageModel>(
-        future: _homePageModel,
+      child: FutureBuilder(
+        future: homePageProviderValue.fetchHomeData(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            // Checking Value
-            // var value = snapshot.data.states;
-            // print(value);
+          if (snapshot.connectionState == ConnectionState.done) {
+            //fetching states from provider
+            var states = homePageProviderValue.homePageModel.states;
+
+            //fetching editStatePopUpValidation from provider
+            var editStatevalid =
+                homePageProviderValue.homePageModel.editStatePopup;
+
+            //fetching newUserValidation from provider
+            var newUser = homePageProviderValue.newUser;
+            // print(newUser);
 
             //Created List for CarouselImage Widget
             List cardList1 = [
               //CarouselImage return Card with Image with onTap Function
-              CarouselImage(
-                cardImage: snapshot.data.couponCards.elementAt(0),
-                cardAction: () {
-                  print("Referral Card Clicked");
-                },
+              Consumer<HomePageProvider>(
+                builder: (_, value, __) => CarouselImage(
+                  cardImage: value.homePageModel.couponCards.elementAt(0),
+                  cardAction: () {
+                    print("Referral Card Clicked");
+                  },
+                ),
               ),
-              CarouselImage(
-                cardImage: snapshot.data.couponCards.elementAt(1),
-                cardAction: () {
-                  print("Referral Card Clicked");
-                },
+              Consumer<HomePageProvider>(
+                builder: (_, value, __) => CarouselImage(
+                  cardImage: value.homePageModel.couponCards.elementAt(1),
+                  cardAction: () {
+                    print("Referral Card Clicked");
+                  },
+                ),
               ),
             ];
 
             List cardList2 = [
               //CarouselImage return Card with Image with onTap Function
-              CarouselImage(
-                cardImage: snapshot.data.gamingLeagueCards.elementAt(0),
-                cardAction: () {
-                  print("Game League Clicked");
-                },
+              Consumer<HomePageProvider>(
+                builder: (_, value, __) => CarouselImage(
+                  cardImage: value.homePageModel.gamingLeagueCards.elementAt(0),
+                  cardAction: () {
+                    print("Game League Clicked");
+                  },
+                ),
               ),
-              CarouselImage(
-                cardImage: snapshot.data.gamingLeagueCards.elementAt(1),
-                cardAction: () {
-                  print("Game League Clicked");
-                },
+              Consumer<HomePageProvider>(
+                builder: (_, value, __) => CarouselImage(
+                  cardImage: value.homePageModel.gamingLeagueCards.elementAt(1),
+                  cardAction: () {
+                    print("Game League Clicked");
+                  },
+                ),
               ),
-              CarouselImage(
-                cardImage: snapshot.data.gamingLeagueCards.elementAt(2),
-                cardAction: () {
-                  print("Game League Clicked");
-                },
+              Consumer<HomePageProvider>(
+                builder: (_, value, __) => CarouselImage(
+                  cardImage: value.homePageModel.gamingLeagueCards.elementAt(2),
+                  cardAction: () {
+                    print("Game League Clicked");
+                  },
+                ),
               ),
             ];
 
@@ -143,15 +135,15 @@ class _HomeScreenFieldsContainerState extends State<HomeScreenFieldsContainer> {
               physics: BouncingScrollPhysics(),
               children: <Widget>[
                 //New User Pop UP
-                newUser ? Container() : HoorayPopUp(context: context),
+                newUser ? HoorayPopUp(context: context) : Container(),
 
-                //Edit State Pop Up
-                editState
-                    ? Container()
-                    : EditStatePopUp(
+                // Edit State Pop Up
+                editStatevalid
+                    ? EditStatePopUp(
                         context: context,
-                        states: snapshot.data.states,
-                      ),
+                        states: states,
+                      )
+                    : Container(),
 
                 //CarouselImageSlider return cardList1 List
                 CarouselImageSlider(
@@ -159,11 +151,13 @@ class _HomeScreenFieldsContainerState extends State<HomeScreenFieldsContainer> {
                   carouselHeight: 75,
                 ),
                 //CardImage return Card with Image with onTap Function
-                CardImage(
-                  image: snapshot.data.videoLeagueCard,
-                  cardAction: () {
-                    print("Video League Clicked");
-                  },
+                Consumer<HomePageProvider>(
+                  builder: (_, value, __) => CardImage(
+                    image: value.homePageModel.videoLeagueCard,
+                    cardAction: () {
+                      print("Video League Clicked");
+                    },
+                  ),
                 ),
 
                 //CarouselImageSlider return cardList2 List
@@ -173,28 +167,36 @@ class _HomeScreenFieldsContainerState extends State<HomeScreenFieldsContainer> {
                 ),
 
                 //CardImage return Card with Image with onTap Function
-                CardImage(
-                  image:
-                      snapshot.data.prizeDistributionCards.elementAt(0).image,
-                  cardAction: () {
-                    print("Prize Distribution Card Clicked");
-                  },
+
+                Consumer<HomePageProvider>(
+                  builder: (_, value, __) => CardImage(
+                    image: value.homePageModel.prizeDistributionCards
+                        .elementAt(0)
+                        .image,
+                    cardAction: () {
+                      print("Prize Distribution Card Clicked");
+                    },
+                  ),
                 ),
 
                 //CardImage return Card with Image with onTap Function
 
                 MyDreamPriceButton(),
-                CardImage(
-                  image: snapshot.data.referralBanner,
-                  cardAction: () {
-                    print("Refer & Earn Card Clicked");
-                  },
+                Consumer<HomePageProvider>(
+                  builder: (context, value, child) => CardImage(
+                    image: value.homePageModel.referralBanner,
+                    cardAction: () {
+                      print("Refer & Earn Card Clicked");
+                    },
+                  ),
                 ),
-                CardImage(
-                  image: snapshot.data.fanBaseData.bannerImage,
-                  cardAction: () {
-                    print("Fanbase Card Clicked");
-                  },
+                Consumer<HomePageProvider>(
+                  builder: (_, value, __) => CardImage(
+                    image: value.homePageModel.fanBaseData.bannerImage,
+                    cardAction: () {
+                      print("Fanbase Card Clicked");
+                    },
+                  ),
                 ),
                 Leaderboard(),
                 SizedBox(height: 20),

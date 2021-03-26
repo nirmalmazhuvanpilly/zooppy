@@ -68,10 +68,6 @@ class _HoorayPopUpState extends State<HoorayPopUp> {
                   textStyle: TextStyle(color: Colors.white),
                   shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(5),
-                    side: BorderSide(
-                      color: Colors.black,
-                      width: 2,
-                    ),
                   ),
                 ),
                 child: Text("Start Playing Games"),
