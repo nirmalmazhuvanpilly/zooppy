@@ -61,16 +61,16 @@ class HomePageProvider with ChangeNotifier {
   thisWeekClicked() {
     thisWeek = true;
     allTime = false;
-    print("This Week $thisWeek");
-    print("All Time $allTime");
+    // print("This Week $thisWeek");
+    // print("All Time $allTime");
     notifyListeners();
   }
 
   allTimeClicked() {
     allTime = true;
     thisWeek = false;
-    print("This Week $thisWeek");
-    print("All Time $allTime");
+    // print("This Week $thisWeek");
+    // print("All Time $allTime");
     notifyListeners();
   }
   //////////////////////////////////////////////////////////////////////////////

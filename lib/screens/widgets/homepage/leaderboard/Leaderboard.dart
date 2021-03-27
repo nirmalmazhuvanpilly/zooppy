@@ -24,24 +24,50 @@ class Leaderboard extends StatelessWidget {
                   builder: (_, value, __) => Align(
                     alignment: Alignment.topCenter,
                     child: StackContainers(
-                      srank: value.topWinnersModel.topWinners
-                          .elementAt(0)
-                          .rank
-                          .toString(),
-                      suser: value.topWinnersModel.topWinners
-                          .elementAt(0)
-                          .user
-                          .name
-                          .toString(),
-                      suserAmount: value.topWinnersModel.topWinners
-                          .elementAt(0)
-                          .totalWinnings
-                          .toString(),
+                      //Conditions using ternary operator => (condition)?true:flase;
+                      srank: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(0)
+                              .rank
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(5)
+                              .rank
+                              .toString(),
+                      ////////////////////////////////
+                      suser: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(0)
+                              .user
+                              .name
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(5)
+                              .user
+                              .name
+                              .toString(),
+                      ////////////////////////////////
+                      suserAmount: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(0)
+                              .totalWinnings
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(5)
+                              .totalWinnings
+                              .toString(),
+                      ////////////////////////////////
                       srankColor: Colors.red,
-                      savatar: value.topWinnersModel.topWinners
-                          .elementAt(0)
-                          .user
-                          .image,
+                      ////////////////////////////////
+                      savatar: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(0)
+                              .user
+                              .image
+                          : value.topWinnersModel.topWinners
+                              .elementAt(5)
+                              .user
+                              .image,
                     ),
                   ),
                 ),
@@ -49,24 +75,49 @@ class Leaderboard extends StatelessWidget {
                   builder: (_, value, __) => Align(
                     alignment: Alignment.bottomLeft,
                     child: StackContainers(
-                      srank: value.topWinnersModel.topWinners
-                          .elementAt(2)
-                          .rank
-                          .toString(),
-                      suser: value.topWinnersModel.topWinners
-                          .elementAt(2)
-                          .user
-                          .name
-                          .toString(),
-                      suserAmount: value.topWinnersModel.topWinners
-                          .elementAt(2)
-                          .totalWinnings
-                          .toString(),
+                      srank: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(2)
+                              .rank
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(7)
+                              .rank
+                              .toString(),
+                      ////////////////////////////////
+                      suser: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(2)
+                              .user
+                              .name
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(7)
+                              .user
+                              .name
+                              .toString(),
+                      ////////////////////////////////
+                      suserAmount: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(2)
+                              .totalWinnings
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(7)
+                              .totalWinnings
+                              .toString(),
+                      ////////////////////////////////
                       srankColor: Colors.purple,
-                      savatar: value.topWinnersModel.topWinners
-                          .elementAt(2)
-                          .user
-                          .image,
+                      ////////////////////////////////
+                      savatar: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(2)
+                              .user
+                              .image
+                          : value.topWinnersModel.topWinners
+                              .elementAt(7)
+                              .user
+                              .image,
                     ),
                   ),
                 ),
@@ -74,24 +125,49 @@ class Leaderboard extends StatelessWidget {
                   builder: (_, value, __) => Align(
                     alignment: Alignment.bottomRight,
                     child: StackContainers(
-                      srank: value.topWinnersModel.topWinners
-                          .elementAt(1)
-                          .rank
-                          .toString(),
-                      suser: value.topWinnersModel.topWinners
-                          .elementAt(1)
-                          .user
-                          .name
-                          .toString(),
-                      suserAmount: value.topWinnersModel.topWinners
-                          .elementAt(1)
-                          .totalWinnings
-                          .toString(),
+                      srank: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(1)
+                              .rank
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(6)
+                              .rank
+                              .toString(),
+                      ////////////////////////////////
+                      suser: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(1)
+                              .user
+                              .name
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(6)
+                              .user
+                              .name
+                              .toString(),
+                      ////////////////////////////////
+                      suserAmount: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(1)
+                              .totalWinnings
+                              .toString()
+                          : value.topWinnersModel.topWinners
+                              .elementAt(6)
+                              .totalWinnings
+                              .toString(),
+                      ////////////////////////////////
                       srankColor: Colors.green,
-                      savatar: value.topWinnersModel.topWinners
-                          .elementAt(1)
-                          .user
-                          .image,
+                      ////////////////////////////////
+                      savatar: value.thisWeek
+                          ? value.topWinnersModel.topWinners
+                              .elementAt(1)
+                              .user
+                              .image
+                          : value.topWinnersModel.topWinners
+                              .elementAt(6)
+                              .user
+                              .image,
                     ),
                   ),
                 ),
@@ -149,39 +225,89 @@ class Leaderboard extends StatelessWidget {
               children: <Widget>[
                 Consumer<HomePageProvider>(
                   builder: (_, value, __) => LeaderboardStackBanner(
-                    rank: value.topWinnersModel.topWinners
-                        .elementAt(3)
-                        .rank
-                        .toString(),
-                    user:
-                        value.topWinnersModel.topWinners.elementAt(3).user.name,
-                    userAmount: value.topWinnersModel.topWinners
-                        .elementAt(3)
-                        .totalWinnings
-                        .toString(),
-                    avatar: value.topWinnersModel.topWinners
-                        .elementAt(3)
-                        .user
-                        .image,
+                    rank: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(3)
+                            .rank
+                            .toString()
+                        : value.topWinnersModel.topWinners
+                            .elementAt(8)
+                            .rank
+                            .toString(),
+                    ////////////////////////////////
+                    user: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(3)
+                            .user
+                            .name
+                        : value.topWinnersModel.topWinners
+                            .elementAt(8)
+                            .user
+                            .name,
+                    ////////////////////////////////
+                    userAmount: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(3)
+                            .totalWinnings
+                            .toString()
+                        : value.topWinnersModel.topWinners
+                            .elementAt(8)
+                            .totalWinnings
+                            .toString(),
+                    ////////////////////////////////
+                    avatar: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(3)
+                            .user
+                            .image
+                        : value.topWinnersModel.topWinners
+                            .elementAt(8)
+                            .user
+                            .image,
                   ),
                 ),
                 SizedBox(height: 10),
                 Consumer<HomePageProvider>(
                   builder: (_, value, __) => LeaderboardStackBanner(
-                    rank: value.topWinnersModel.topWinners
-                        .elementAt(4)
-                        .rank
-                        .toString(),
-                    user:
-                        value.topWinnersModel.topWinners.elementAt(4).user.name,
-                    userAmount: value.topWinnersModel.topWinners
-                        .elementAt(4)
-                        .totalWinnings
-                        .toString(),
-                    avatar: value.topWinnersModel.topWinners
-                        .elementAt(4)
-                        .user
-                        .image,
+                    rank: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(4)
+                            .rank
+                            .toString()
+                        : value.topWinnersModel.topWinners
+                            .elementAt(9)
+                            .rank
+                            .toString(),
+                    ////////////////////////////////
+                    user: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(4)
+                            .user
+                            .name
+                        : value.topWinnersModel.topWinners
+                            .elementAt(9)
+                            .user
+                            .name,
+                    ////////////////////////////////
+                    userAmount: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(4)
+                            .totalWinnings
+                            .toString()
+                        : value.topWinnersModel.topWinners
+                            .elementAt(9)
+                            .totalWinnings
+                            .toString(),
+                    ////////////////////////////////
+                    avatar: value.thisWeek
+                        ? value.topWinnersModel.topWinners
+                            .elementAt(4)
+                            .user
+                            .image
+                        : value.topWinnersModel.topWinners
+                            .elementAt(9)
+                            .user
+                            .image,
                   ),
                 ),
               ],
