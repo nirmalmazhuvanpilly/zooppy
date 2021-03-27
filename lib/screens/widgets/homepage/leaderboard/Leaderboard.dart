@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zooppy/providers/home_page_provider.dart';
+import 'package:zooppy/screens/widgets/homepage/leaderboard/leaderboard_stack.dart';
 import 'package:zooppy/screens/widgets/homepage/leaderboard/leaderboard_stack_banner.dart';
-import 'package:zooppy/screens/widgets/homepage/leaderboard/stack_containers.dart';
 
 class Leaderboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5),
-      // padding: EdgeInsets.all(5),
-      color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(left: 18, right: 18, bottom: 18),
-            width: double.infinity,
-            height: 200,
-            color: Colors.orange,
-            child: Stack(
-              children: <Widget>[
-                Consumer<HomePageProvider>(
-                  builder: (_, value, __) => Align(
+    return Consumer<HomePageProvider>(
+      builder: (_, value, __) => Container(
+        margin: EdgeInsets.all(5),
+        // padding: EdgeInsets.all(5),
+        color: Colors.white,
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 18, right: 18, bottom: 18),
+              width: double.infinity,
+              height: 200,
+              color: Colors.orange,
+              child: Stack(
+                children: <Widget>[
+                  Align(
                     alignment: Alignment.topCenter,
-                    child: StackContainers(
+                    child: LeaderboardStack(
                       //Conditions using ternary operator => (condition)?true:flase;
-                      srank: value.thisWeek
+                      rank: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(0)
                               .rank
@@ -35,7 +35,7 @@ class Leaderboard extends StatelessWidget {
                               .rank
                               .toString(),
                       ////////////////////////////////
-                      suser: value.thisWeek
+                      user: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(0)
                               .user
@@ -47,7 +47,7 @@ class Leaderboard extends StatelessWidget {
                               .name
                               .toString(),
                       ////////////////////////////////
-                      suserAmount: value.thisWeek
+                      userAmount: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(0)
                               .totalWinnings
@@ -57,9 +57,9 @@ class Leaderboard extends StatelessWidget {
                               .totalWinnings
                               .toString(),
                       ////////////////////////////////
-                      srankColor: Colors.red,
+                      rankColor: Colors.red,
                       ////////////////////////////////
-                      savatar: value.thisWeek
+                      avatar: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(0)
                               .user
@@ -70,12 +70,10 @@ class Leaderboard extends StatelessWidget {
                               .image,
                     ),
                   ),
-                ),
-                Consumer<HomePageProvider>(
-                  builder: (_, value, __) => Align(
+                  Align(
                     alignment: Alignment.bottomLeft,
-                    child: StackContainers(
-                      srank: value.thisWeek
+                    child: LeaderboardStack(
+                      rank: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(2)
                               .rank
@@ -85,7 +83,7 @@ class Leaderboard extends StatelessWidget {
                               .rank
                               .toString(),
                       ////////////////////////////////
-                      suser: value.thisWeek
+                      user: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(2)
                               .user
@@ -97,7 +95,7 @@ class Leaderboard extends StatelessWidget {
                               .name
                               .toString(),
                       ////////////////////////////////
-                      suserAmount: value.thisWeek
+                      userAmount: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(2)
                               .totalWinnings
@@ -107,9 +105,9 @@ class Leaderboard extends StatelessWidget {
                               .totalWinnings
                               .toString(),
                       ////////////////////////////////
-                      srankColor: Colors.purple,
+                      rankColor: Colors.purple,
                       ////////////////////////////////
-                      savatar: value.thisWeek
+                      avatar: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(2)
                               .user
@@ -120,12 +118,10 @@ class Leaderboard extends StatelessWidget {
                               .image,
                     ),
                   ),
-                ),
-                Consumer<HomePageProvider>(
-                  builder: (_, value, __) => Align(
+                  Align(
                     alignment: Alignment.bottomRight,
-                    child: StackContainers(
-                      srank: value.thisWeek
+                    child: LeaderboardStack(
+                      rank: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(1)
                               .rank
@@ -135,7 +131,7 @@ class Leaderboard extends StatelessWidget {
                               .rank
                               .toString(),
                       ////////////////////////////////
-                      suser: value.thisWeek
+                      user: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(1)
                               .user
@@ -147,7 +143,7 @@ class Leaderboard extends StatelessWidget {
                               .name
                               .toString(),
                       ////////////////////////////////
-                      suserAmount: value.thisWeek
+                      userAmount: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(1)
                               .totalWinnings
@@ -157,9 +153,9 @@ class Leaderboard extends StatelessWidget {
                               .totalWinnings
                               .toString(),
                       ////////////////////////////////
-                      srankColor: Colors.green,
+                      rankColor: Colors.green,
                       ////////////////////////////////
-                      savatar: value.thisWeek
+                      avatar: value.thisWeek
                           ? value.topWinnersModel.topWinners
                               .elementAt(1)
                               .user
@@ -170,21 +166,19 @@ class Leaderboard extends StatelessWidget {
                               .image,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          ////////////////////////////////////////////////////////////////////////////
-          Container(
-            // color: Colors.green,
-            padding: EdgeInsets.all(10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Consumer<HomePageProvider>(
-                  builder: (_, value, __) => ElevatedButton(
+            ////////////////////////////////////////////////////////////////////////////
+            Container(
+              // color: Colors.green,
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       primary:
@@ -197,9 +191,7 @@ class Leaderboard extends StatelessWidget {
                     onPressed: value.thisWeekClicked,
                     child: Text("This Week"),
                   ),
-                ),
-                Consumer<HomePageProvider>(
-                  builder: (_, value, __) => ElevatedButton(
+                  ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       primary:
@@ -212,19 +204,17 @@ class Leaderboard extends StatelessWidget {
                     onPressed: value.allTimeClicked,
                     child: Text("All Time"),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          ////////////////////////////////////////////////////////////////////////////
-          Container(
-            width: double.infinity,
-            // color: Colors.pink,
-            child: Column(
-              children: <Widget>[
-                Consumer<HomePageProvider>(
-                  builder: (_, value, __) => LeaderboardStackBanner(
+            ////////////////////////////////////////////////////////////////////////////
+            Container(
+              width: double.infinity,
+              // color: Colors.pink,
+              child: Column(
+                children: <Widget>[
+                  LeaderboardStackBanner(
                     rank: value.thisWeek
                         ? value.topWinnersModel.topWinners
                             .elementAt(3)
@@ -265,10 +255,8 @@ class Leaderboard extends StatelessWidget {
                             .user
                             .image,
                   ),
-                ),
-                SizedBox(height: 10),
-                Consumer<HomePageProvider>(
-                  builder: (_, value, __) => LeaderboardStackBanner(
+                  SizedBox(height: 10),
+                  LeaderboardStackBanner(
                     rank: value.thisWeek
                         ? value.topWinnersModel.topWinners
                             .elementAt(4)
@@ -309,22 +297,22 @@ class Leaderboard extends StatelessWidget {
                             .user
                             .image,
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          ////////////////////////////////////////////////////////////////////////////
-          SizedBox(height: 10),
-          TextButton(
-            onPressed: () {
-              print("View Leaderboard Clicked");
-            },
-            child: Text(
-              "View Leaderboard",
+            ////////////////////////////////////////////////////////////////////////////
+            SizedBox(height: 10),
+            TextButton(
+              onPressed: () {
+                print("View Leaderboard Clicked");
+              },
+              child: Text(
+                "View Leaderboard",
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

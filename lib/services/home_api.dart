@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:zooppy/models/blogs_model.dart';
 import 'package:zooppy/models/home_page_model.dart';
 import 'package:zooppy/models/top_winners_model.dart';
 import 'package:zooppy/services/api.dart';
@@ -50,5 +51,15 @@ class HomeAPI {
     //parsing json to model class
     topWinnersModel = TopWinnersModel.fromJson(body);
     return topWinnersModel;
+  }
+
+  Future<BlogsModel> blogsRequest() async {
+    var blogsModel;
+    var blogsModelUrl = baseUrl + 'blogs';
+    var res = await Network().getData(blogsModelUrl);
+    var body = json.decode(res.body);
+    //parsing json to model class
+    blogsModel = BlogsModel.fromJson(body);
+    return blogsModel;
   }
 }

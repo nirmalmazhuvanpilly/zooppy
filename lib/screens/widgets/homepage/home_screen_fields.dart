@@ -10,7 +10,7 @@ import 'my_dream_price.dart';
 import 'carousel_image.dart';
 import 'carousel_image_slider.dart';
 import 'card_image.dart';
-import 'blog.dart';
+import 'blog/blog.dart';
 import 'leaderboard/leaderboard.dart';
 
 // ignore: must_be_immutable

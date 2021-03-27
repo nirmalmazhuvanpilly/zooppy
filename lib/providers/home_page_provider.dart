@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zooppy/models/blogs_model.dart';
 import 'package:zooppy/models/home_page_model.dart';
 import 'package:zooppy/models/top_winners_model.dart';
 import 'package:zooppy/services/home_api.dart';
@@ -23,6 +24,7 @@ class HomePageProvider with ChangeNotifier {
     homePageModel = await _homeAPI.homeDetailsRequest();
     await newUserValidation();
     await fetchTopWinners();
+    await fetchBlogs();
   }
   //////////////////////////////////////////////////////////////////////////////
 
@@ -75,4 +77,18 @@ class HomePageProvider with ChangeNotifier {
   }
   //////////////////////////////////////////////////////////////////////////////
 
+  //////////////////////////////////////////////////////////////////////////////
+  BlogsModel _blogsModel = BlogsModel();
+
+  BlogsModel get blogsModel => _blogsModel;
+
+  set blogsModel(BlogsModel blogsModel) {
+    _blogsModel = blogsModel;
+    notifyListeners();
+  }
+
+  Future<void> fetchBlogs() async {
+    blogsModel = await _homeAPI.blogsRequest();
+  }
+  //////////////////////////////////////////////////////////////////////////////
 }
