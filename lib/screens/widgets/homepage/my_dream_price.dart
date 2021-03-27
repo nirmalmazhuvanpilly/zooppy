@@ -11,15 +11,12 @@ class MyDreamPriceButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             padding: EdgeInsets.all(8.0),
             primary: Colors.red,
+            onPrimary: Colors.white,
             textStyle: TextStyle(
               color: Colors.white,
             ),
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(5),
-              side: BorderSide(
-                color: Colors.black,
-                width: 2,
-              ),
             ),
           ),
 
