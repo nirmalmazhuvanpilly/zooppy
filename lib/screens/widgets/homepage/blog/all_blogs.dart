@@ -11,6 +11,9 @@ class AllBlogs extends StatelessWidget {
       appBar: AppBar(
         title: Text("Blogs"),
         backgroundColor: Colors.redAccent,
+        actions: <Widget>[
+          IndustryDropdown(),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -121,6 +124,76 @@ class AllBlogs extends StatelessWidget {
               );
             },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class IndustryDropdown extends StatefulWidget {
+  @override
+  _IndustryDropdownState createState() => _IndustryDropdownState();
+}
+
+class _IndustryDropdownState extends State<IndustryDropdown> {
+  final blogItems = ["All Industries", "Mollywood", "Kollywood"];
+
+  String chosenValue;
+
+  @override
+  Widget build(BuildContext context) {
+    print(chosenValue);
+    return Container(
+      width: 200,
+      child: Center(
+        child: DropdownButton<String>(
+          value: chosenValue,
+          selectedItemBuilder: (BuildContext context) {
+            return blogItems.map<Widget>((String item) {
+              return Center(
+                child: Text(
+                  item,
+                  style: TextStyle(color: Colors.white),
+                ),
+              );
+            }).toList();
+          },
+          iconEnabledColor: Colors.white,
+          underline: Container(),
+          isExpanded: true,
+          hint: Center(
+            child: Text(
+              "All Industries",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          items: blogItems.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Row(
+                children: <Widget>[
+                  Expanded(child: Text(value)),
+                  Expanded(
+                    child: Radio(
+                        activeColor: Colors.redAccent,
+                        value: value,
+                        groupValue: chosenValue,
+                        onChanged: (value) {
+                          setState(() {
+                            chosenValue = value;
+                            Navigator.of(context).pop();
+                          });
+                        }),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
+          onChanged: (value) {
+            setState(() {
+              chosenValue = value;
+            });
+          },
         ),
       ),
     );

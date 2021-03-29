@@ -55,7 +55,6 @@ class Blog extends StatelessWidget {
                               flex: 5,
                               child: Container(
                                 width: double.infinity,
-                                color: Colors.blue,
                                 child: Image.network(
                                   value.blogsModel.blogs.data
                                       .elementAt(index)
