@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zooppy/providers/home_page_provider.dart';
+import 'package:zooppy/screens/widgets/homepage/blog/blog_view.dart';
 
 class Blog extends StatelessWidget {
   @override
@@ -24,69 +25,89 @@ class Blog extends StatelessWidget {
               ),
               itemCount: value.blogsModel.blogs.data.length,
               itemBuilder: (context, index) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Stack(
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              color: Colors.blue,
-                              child: Image.network(
-                                value.blogsModel.blogs.data
-                                    .elementAt(index)
-                                    .image,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Container(
-                              padding: EdgeInsets.all(10),
-                              color: Colors.grey[300],
-                              child: Text(
-                                value.blogsModel.blogs.data
-                                    .elementAt(index)
-                                    .title
-                                    .toString(),
-                                overflow: TextOverflow.fade,
-                              ),
-                            ),
-                          ),
-                        ],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BlogView(
+                          blogHeading: value.blogsModel.blogs.data
+                              .elementAt(index)
+                              .title,
+                          blogContents:
+                              value.blogsModel.blogs.data.elementAt(index).body,
+                          blogImage: value.blogsModel.blogs.data
+                              .elementAt(index)
+                              .image,
+                        ),
                       ),
-                      Positioned(
-                        top: 70,
-                        left: 5,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 2,
-                            horizontal: 4,
-                          ),
-                          color: Colors.white,
-                          child: Text(
-                            value.blogsModel.blogs.data
-                                        .elementAt(index)
-                                        .filmIndustry ==
-                                    null
-                                ? value.blogsModel.noIndustryText.toUpperCase()
-                                : value.blogsModel.blogs.data
-                                    .elementAt(index)
-                                    .filmIndustry
-                                    .name
-                                    .toUpperCase(),
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
+                    );
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Stack(
+                      children: <Widget>[
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 5,
+                              child: Container(
+                                color: Colors.blue,
+                                child: Image.network(
+                                  value.blogsModel.blogs.data
+                                      .elementAt(index)
+                                      .image,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                color: Colors.grey[300],
+                                child: Text(
+                                  value.blogsModel.blogs.data
+                                      .elementAt(index)
+                                      .title
+                                      .toString(),
+                                  overflow: TextOverflow.fade,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          top: 70,
+                          left: 5,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 2,
+                              horizontal: 4,
+                            ),
+                            color: Colors.white,
+                            child: Text(
+                              value.blogsModel.blogs.data
+                                          .elementAt(index)
+                                          .filmIndustry ==
+                                      null
+                                  ? value.blogsModel.noIndustryText
+                                      .toUpperCase()
+                                  : value.blogsModel.blogs.data
+                                      .elementAt(index)
+                                      .filmIndustry
+                                      .name
+                                      .toUpperCase(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
