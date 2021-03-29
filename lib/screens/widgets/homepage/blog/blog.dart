@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zooppy/providers/home_page_provider.dart';
+import 'package:zooppy/screens/widgets/homepage/blog/all_blogs.dart';
 import 'package:zooppy/screens/widgets/homepage/blog/blog_view.dart';
 
 class Blog extends StatelessWidget {
@@ -53,6 +54,7 @@ class Blog extends StatelessWidget {
                             Expanded(
                               flex: 5,
                               child: Container(
+                                width: double.infinity,
                                 color: Colors.blue,
                                 child: Image.network(
                                   value.blogsModel.blogs.data
@@ -65,6 +67,7 @@ class Blog extends StatelessWidget {
                             Expanded(
                               flex: 3,
                               child: Container(
+                                width: double.infinity,
                                 padding: EdgeInsets.all(10),
                                 color: Colors.grey[300],
                                 child: Text(
@@ -119,7 +122,14 @@ class Blog extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomRight,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AllBlogs(),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 primary: Colors.red,
                 onPrimary: Colors.white,

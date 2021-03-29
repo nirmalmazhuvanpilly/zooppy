@@ -29,10 +29,9 @@ class BlogView extends StatelessWidget {
         children: <Widget>[
           Container(
             color: Colors.red,
-            height: 250,
             child: Image.network(
               blogImage,
-              fit: BoxFit.fill,
+              fit: BoxFit.scaleDown,
             ),
           ),
           Padding(
